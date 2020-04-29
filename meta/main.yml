@@ -7,7 +7,7 @@ dependencies:
       - ssh
 
 galaxy_info:
-  role_name: ssh-audited
+  role_name: ssh_audited
   author: Christian Krause
   description: 'configure OpenSSH based on latest ssh-audit recommendations'
   company: German Centre for Integrative Biodiversity Research (iDiv)

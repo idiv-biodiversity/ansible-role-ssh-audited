@@ -43,7 +43,7 @@ Add to `requirements.yml`:
 ```yml
 ---
 
-- src: idiv-biodiversity.ssh-audited
+- src: idiv-biodiversity.ssh_audited
 
 ...
 ```
@@ -65,7 +65,7 @@ Write a top-level playbook:
   hosts: heads
 
   roles:
-    - role: idiv-biodiversity.ssh-audited
+    - role: idiv-biodiversity.ssh_audited
       tags:
         - ssh
 
@@ -81,7 +81,7 @@ Define the role dependency in `meta/main.yml`:
 
 dependencies:
 
-  - role: idiv-biodiversity.ssh-audited
+  - role: idiv-biodiversity.ssh_audited
     tags:
       - ssh
 
