@@ -1,0 +1,19 @@
+---
+
+__sftp_server_location: >-
+  {{
+    __sftp_server_location_default[
+      ansible_distribution + '_' + ansible_distribution_major_version
+    ] | default(
+        __sftp_server_location_default[ansible_os_family] |
+          default(__sftp_server_location_default['generic']
+      )
+    )
+  }}
+
+__sftp_server_location_default:
+  generic: /usr/lib/ssh/sftp-server
+  RedHat: /usr/libexec/openssh/sftp-server
+  Ubuntu_16: /usr/lib/openssh/sftp-server
+
+...

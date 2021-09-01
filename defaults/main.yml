@@ -45,22 +45,6 @@ ssh_pubkey_accepted_key_types:
 
 ssh_subsystems:
   - name: sftp
-    command: '{{ sftp_server_location }} -f AUTHPRIV -l INFO'
-
-sftp_server_location: >-
-  {{
-    sftp_server_location_default[
-      ansible_distribution + '_' + ansible_distribution_major_version
-    ] | default(
-        sftp_server_location_default[ansible_os_family] |
-          default(sftp_server_location_default['generic']
-      )
-    )
-  }}
-
-sftp_server_location_default:
-  generic: /usr/lib/ssh/sftp-server
-  RedHat: /usr/libexec/openssh/sftp-server
-  Ubuntu_16: /usr/lib/openssh/sftp-server
+    command: '{{ __sftp_server_location }} -f AUTHPRIV -l INFO'
 
 ...
