@@ -28,12 +28,12 @@ None.
 Role Variables
 --------------
 
-This role only **sets** variables from [idiv-biodiversity.ssh][].
+This role only **sets** variables from [idiv_biodiversity.ssh][].
 
 Dependencies
 ------------
 
-This role depends on [idiv-biodiversity.ssh][].
+This role depends on [idiv_biodiversity.ssh][].
 
 Example Playbook
 ----------------
@@ -43,7 +43,7 @@ Add to `requirements.yml`:
 ```yml
 ---
 
-- src: idiv-biodiversity.ssh_audited
+- src: idiv_biodiversity.ssh_audited
 
 ...
 ```
@@ -65,7 +65,7 @@ Write a top-level playbook:
   hosts: heads
 
   roles:
-    - role: idiv-biodiversity.ssh_audited
+    - role: idiv_biodiversity.ssh_audited
       tags:
         - ssh
 
@@ -81,7 +81,7 @@ Define the role dependency in `meta/main.yml`:
 
 dependencies:
 
-  - role: idiv-biodiversity.ssh_audited
+  - role: idiv_biodiversity.ssh_audited
     tags:
       - ssh
 
@@ -102,6 +102,6 @@ Centre for Integrative Biodiversity Research (iDiv)][idiv].
 
 [author]: https://www.idiv.de/en/groups_and_people/employees/details/61.html
 [idiv]: https://www.idiv.de/
-[idiv-biodiversity.ssh]: https://galaxy.ansible.com/idiv-biodiversity/ssh
+[idiv_biodiversity.ssh]: https://galaxy.ansible.com/idiv_biodiversity/ssh
 [ssh-audit]: https://github.com/jtesta/ssh-audit
 [wookietreiber]: https://github.com/wookietreiber
