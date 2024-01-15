@@ -32,4 +32,6 @@ ssh_subsystems:
   - name: sftp
     command: '{{ __ssh_audited_sftp_server_location }} -f AUTHPRIV -l INFO'
 
+ssh_opt_out_crypto_policies: yes
+
 ...
