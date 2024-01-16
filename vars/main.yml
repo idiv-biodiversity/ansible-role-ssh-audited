@@ -1,19 +1,35 @@
 ---
 
-__sftp_server_location: >-
+__ssh_audited_key_algorithm_variants:
+  default:
+    - sk-ssh-ed25519@openssh.com
+    - ssh-ed25519
+    - rsa-sha2-512
+    - rsa-sha2-256
+  redhat_8:
+    - ssh-ed25519
+    - rsa-sha2-512
+    - rsa-sha2-256
+  ubuntu_18:
+    - ssh-ed25519
+    - rsa-sha2-512
+    - rsa-sha2-256
+
+__ssh_audited_key_algorithms: >-
   {{
-    __sftp_server_location_default[
-      ansible_distribution + '_' + ansible_distribution_major_version
-    ] | default(
-        __sftp_server_location_default[ansible_os_family] |
-          default(__sftp_server_location_default['generic']
-      )
-    )
+    __ssh_audited_key_algorithm_variants[__ssh_distro_version] |
+      default(__ssh_audited_key_algorithm_variants[__ssh_os_version]) |
+      default(__ssh_audited_key_algorithm_variants['default'])
   }}
 
-__sftp_server_location_default:
-  generic: /usr/lib/ssh/sftp-server
-  RedHat: /usr/libexec/openssh/sftp-server
-  Ubuntu_16: /usr/lib/openssh/sftp-server
+__ssh_audited_sftp_server_locations:
+  archlinux: /usr/lib/ssh/sftp-server
+  debian: /usr/lib/openssh/sftp-server
+  redhat: /usr/libexec/openssh/sftp-server
+
+__ssh_audited_sftp_server_location: >-
+  {{
+    __ssh_audited_sftp_server_locations[__ssh_os]
+  }}
 
 ...

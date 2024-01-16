@@ -12,11 +12,7 @@ ssh_host_keys:
   - /etc/ssh/ssh_host_ed25519_key
   - /etc/ssh/ssh_host_rsa_key
 
-ssh_host_key_algorithms:
-  - sk-ssh-ed25519@openssh.com
-  - ssh-ed25519
-  - rsa-sha2-512
-  - rsa-sha2-256
+ssh_host_key_algorithms: '{{ __ssh_audited_key_algorithms }}'
 
 ssh_kex_algorithms:
   - curve25519-sha256
@@ -37,14 +33,10 @@ ssh_modulus_min: 3071
 
 ssh_permit_root_login: 'no'
 
-ssh_pubkey_accepted_key_types:
-  - sk-ssh-ed25519@openssh.com
-  - ssh-ed25519
-  - rsa-sha2-512
-  - rsa-sha2-256
+ssh_pubkey_accepted_key_types: '{{ __ssh_audited_key_algorithms }}'
 
 ssh_subsystems:
   - name: sftp
-    command: '{{ __sftp_server_location }} -f AUTHPRIV -l INFO'
+    command: '{{ __ssh_audited_sftp_server_location }} -f AUTHPRIV -l INFO'
 
 ...
