@@ -23,36 +23,39 @@ Table of Contents
 Requirements
 ------------
 
-None.
+- Ansible 2.9
 
 Role Variables
 --------------
 
 This role only **sets** variables from [idiv_biodiversity.ssh][].
 
+**Note:** The hardened defaults that this role sets may be different based on
+the targeted platform/OS/distro due to what its version of OpenSSH supports.
+
 Dependencies
 ------------
-
-This role depends on [idiv_biodiversity.ssh][].
-
-Example Playbook
-----------------
-
-Add to `requirements.yml`:
 
 ```yml
 ---
 
-- src: idiv_biodiversity.ssh_audited
+# requirements.yml
+
+roles:
+
+  - name: idiv_biodiversity.ssh
+    src: https://github.com/idiv-biodiversity/ansible-role-ssh
+    version: vX.Y.Z
+
+  - name: idiv_biodiversity.ssh_audited
+    src: https://github.com/idiv-biodiversity/ansible-role-ssh-audited
+    version: vX.Y.Z
 
 ...
 ```
 
-Download:
-
-```console
-$ ansible-galaxy install -r requirements.yml
-```
+Example Playbook
+----------------
 
 ### Top-Level Playbook
 
@@ -61,10 +64,11 @@ Write a top-level playbook:
 ```yml
 ---
 
-- name: head server
-  hosts: heads
+- name: servers
+  hosts: servers
 
   roles:
+
     - role: idiv_biodiversity.ssh_audited
       tags:
         - ssh
