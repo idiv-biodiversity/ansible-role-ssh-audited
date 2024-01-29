@@ -13,12 +13,7 @@ ssh_host_keys:
 
 ssh_host_key_algorithms: '{{ __ssh_audited_key_algorithms }}'
 
-ssh_kex_algorithms:
-  - curve25519-sha256
-  - curve25519-sha256@libssh.org
-  - diffie-hellman-group18-sha512
-  - diffie-hellman-group16-sha512
-  - diffie-hellman-group-exchange-sha256
+ssh_kex_algorithms: '{{ __ssh_audited_kex_algorithms }}'
 
 ssh_log_level: VERBOSE
 
