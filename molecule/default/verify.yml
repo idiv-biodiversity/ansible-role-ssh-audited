@@ -8,22 +8,16 @@
     # install ssh-audit and report its version
     # -------------------------------------------------------------------------
 
-    - name: install ssh-audit (archlinux)
-      when: ansible_distribution == "Archlinux"
-      block:
-
-        - name: install ssh-audit (archlinux)
-          ansible.builtin.package:
-            name: ssh-audit
-          become: yes
-
-    - name: install ssh-audit (others)
-      when: ansible_distribution != "Archlinux"
-      block:
-
-        - name: install ssh-audit
-          ansible.builtin.pip:
-            name: ssh-audit
+    - name: install ssh-audit
+      ansible.builtin.include_tasks:
+        file: '{{ item }}'
+      with_first_found:
+        - files:
+            - 'install-ssh-audit-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml' # yamllint disable-line
+            - 'install-ssh-audit-{{ ansible_distribution }}.yml'
+            - 'install-ssh-audit-default.yml'
+          paths:
+            - ../resources/tasks
 
     - name: get ssh-audit version
       ansible.builtin.command: |

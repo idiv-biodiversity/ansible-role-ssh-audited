@@ -1,0 +1,7 @@
+---
+
+- name: install ssh-audit
+  ansible.builtin.pip:
+    name: ssh-audit
+
+...
